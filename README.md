@@ -10,6 +10,12 @@ Welcome to the Presentations repository! This collection contains materials and 
   
   This presentation explores the development of intelligent data agents using Microsoft Fabric, featuring practical implementations and enterprise AI patterns for modern data architectures.
 
+### 2023
+
+- **[Getting Started with Azure OpenAI](2023/OpenAI/)**
+  
+  Comprehensive guide to Azure OpenAI fundamentals, covering core concepts like prompts, tokens, embeddings, available models (GPT-4, GPT-3.5, Codex), and practical applications including a contact center analytics demo.
+
 ## Usage
 
 Each presentation folder contains related materials including:
