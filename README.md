@@ -6,6 +6,10 @@ Welcome to the Presentations repository! This collection contains materials and 
 
 ### 2026
 
+- **[Introduction to Power BI MCP](2026/Introduction%20to%20Power%20BI%20MCP/)**
+  
+  Exploring the two Power BI MCP server experiences — **Ask vs Build**. Presented at Perth Microsoft Data and Analytics User Group, covering the Remote Power BI MCP Server (cloud-hosted query engine) and Power BI Modeling MCP Server (local model engineering). Features live VS Code + GitHub Copilot demonstrations, practical prompt examples for analytics and model governance, setup prerequisites, and hands-on walkthroughs. Includes comprehensive sample prompts for schema discovery, time-series analysis, DAX generation, semantic documentation, naming conventions, measure engineering, translations, and security automation.
+
 - **[Building Microsoft Fabric Data Agents for the Next Wave of Enterprise AI](2026/Building%20Microsoft%20Fabric%20Data%20Agents%20for%20the%20Next%20Wave%20of%20Enterprise%20AI/)**
   
   This presentation explores the development of intelligent data agents using Microsoft Fabric, featuring practical implementations and enterprise AI patterns for modern data architectures.
