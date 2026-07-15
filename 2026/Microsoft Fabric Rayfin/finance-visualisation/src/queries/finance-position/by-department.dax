@@ -1,0 +1,9 @@
+EVALUATE
+SUMMARIZECOLUMNS (
+    'dimdepartment'[BusinessUnit],
+    'dimdepartment'[DepartmentName],
+    /*__FILTERS__*/
+    "Actual Amount", [Actual Amount],
+    "Budget Amount", [Budget Amount]
+)
+ORDER BY [Actual Amount] DESC

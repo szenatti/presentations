@@ -1,0 +1,6 @@
+EVALUATE
+FILTER (
+    VALUES ( 'dimcategory'[CategoryGroup] ),
+    NOT ISBLANK ( 'dimcategory'[CategoryGroup] )
+)
+ORDER BY 'dimcategory'[CategoryGroup]

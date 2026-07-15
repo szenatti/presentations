@@ -1,0 +1,6 @@
+EVALUATE
+FILTER (
+    VALUES ( 'dimdepartment'[DepartmentName] ),
+    NOT ISBLANK ( 'dimdepartment'[DepartmentName] )
+)
+ORDER BY 'dimdepartment'[DepartmentName]

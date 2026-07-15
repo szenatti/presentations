@@ -1,0 +1,7 @@
+EVALUATE
+SELECTCOLUMNS(
+    SUMMARIZE(dimmonth, dimmonth[MonthNumber], dimmonth[MonthName]),
+    "MonthNumber", dimmonth[MonthNumber],
+    "MonthName", dimmonth[MonthName]
+)
+ORDER BY [MonthNumber]

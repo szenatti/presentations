@@ -1,0 +1,15 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    'dimmonth'[CalendarYear],
+    'dimmonth'[MonthNumber],
+    'dimdepartment'[DepartmentKey],
+    'dimdepartment'[DepartmentName],
+    'dimcategory'[CategoryKey],
+    'dimcategory'[CategoryName],
+    "Actual Amount", [Actual Amount]
+)
+ORDER BY
+    'dimmonth'[CalendarYear] DESC,
+    'dimmonth'[MonthNumber] DESC,
+    'dimdepartment'[DepartmentName],
+    'dimcategory'[CategoryName]

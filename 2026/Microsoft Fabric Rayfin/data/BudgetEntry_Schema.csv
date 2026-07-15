@@ -1,0 +1,12 @@
+﻿Field,DataType,Required,Example,Description
+id,UUID,Yes,,Generated record identifier
+financialYear,Integer,Yes,2026,Year selected in the application
+monthNumber,Integer,Yes,6,Month 1–12
+budgetDate,Date,Yes,2026-06-01,First day of the selected month and year
+departmentKey,Text,Yes,D001,Links to DimDepartment
+categoryKey,Text,Yes,C001,Links to DimCategory
+budgetAmount,Decimal,Yes,80000,Budget entered through Rayfin
+comment,Text,No,Annual software renewals,Budget assumption or explanation
+createdBy,Text,Yes,user@contoso.com,Authenticated user
+createdAt,DateTime,Yes,2026-07-13T16:00:00,Creation timestamp
+updatedAt,DateTime,Yes,2026-07-13T16:00:00,Last update timestamp

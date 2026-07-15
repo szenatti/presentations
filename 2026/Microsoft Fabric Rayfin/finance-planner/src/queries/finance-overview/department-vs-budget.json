@@ -1,0 +1,18 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Actual vs budget expenditure by department.",
+    "width": "container",
+    "height": "container",
+    "mark": "bar",
+    "encoding": {
+        "y": { "field": "Department", "type": "nominal", "sort": null, "title": null },
+        "yOffset": { "field": "Series", "type": "nominal" },
+        "x": { "field": "Amount", "type": "quantitative", "title": "Amount" },
+        "color": {
+            "field": "Series",
+            "type": "nominal",
+            "title": null,
+            "scale": { "domain": ["Actual", "Budget"] }
+        }
+    }
+}

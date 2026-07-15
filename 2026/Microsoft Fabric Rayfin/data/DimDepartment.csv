@@ -1,0 +1,9 @@
+﻿DepartmentKey,DepartmentName,BusinessUnit,BudgetOwner
+D001,Information Technology,Corporate,Alex Chen
+D002,Finance,Corporate,Priya Nair
+D003,Human Resources,Corporate,Emma Wilson
+D004,Marketing,Commercial,Liam Brown
+D005,Sales,Commercial,Olivia Smith
+D006,Operations,Operations,Noah Taylor
+D007,Customer Service,Operations,Mia Johnson
+D008,Facilities,Operations,Ethan Davis

@@ -1,0 +1,19 @@
+EVALUATE
+CALCULATETABLE(
+    SELECTCOLUMNS(
+        factfinanceactuals,
+        "TransactionDate", factfinanceactuals[TransactionDate],
+        "TransactionID", factfinanceactuals[TransactionID],
+        "Department", RELATED(dimdepartment[DepartmentName]),
+        "Category", RELATED(dimcategory[CategoryName]),
+        "Vendor", RELATED(dimvendor[VendorName]),
+        "Description", factfinanceactuals[Description],
+        "PaymentMethod", factfinanceactuals[PaymentMethod],
+        "PostingStatus", factfinanceactuals[PostingStatus],
+        "NetAmount_AUD", factfinanceactuals[NetAmount_AUD],
+        "GST_AUD", factfinanceactuals[GST_AUD],
+        "GrossAmount_AUD", factfinanceactuals[GrossAmount_AUD]
+    )
+    /*__FILTERS__*/
+)
+ORDER BY [TransactionDate] DESC

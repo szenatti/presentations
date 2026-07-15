@@ -4,17 +4,34 @@ table Employee
 	lineageTag: 63799ae9-1b99-4762-ae04-59d4f66ad037
 
 	/// Counts employees for the latest selected reporting period using Date[PeriodNumber].
-	measure EmpCount = CALCULATE(COUNT([EmplID]), FILTER(ALL('Date'[PeriodNumber]), 'Date'[PeriodNumber] = MAX('Date'[PeriodNumber])))
+	measure EmpCount =
+	VAR LatestPeriod = MAX('Date'[PeriodNumber])
+	RETURN
+	CALCULATE(
+		COUNT(Employee[EmplID]),
+		'Date'[PeriodNumber] = LatestPeriod
+	)
 		formatString: #,0
 		lineageTag: 01210a97-c3dc-4030-af85-0df92bea1155
 
 	/// Counts employees with a termination date in the current context.
-	measure Seps = CALCULATE(COUNT([EmplID]), FILTER(Employee, NOT(ISBLANK(Employee[TermDate]))))
+	measure Seps =
+	CALCULATE(
+		COUNT(Employee[EmplID]),
+		NOT(ISBLANK(Employee[TermDate]))
+	)
 		formatString: #,0
 		lineageTag: 9cee6ad0-4ed6-4060-9d0a-99e6620b2a36
 
 	/// Counts active employees by filtering to records where termination date is blank.
-	measure Actives = CALCULATE([EmpCount], FILTER(Employee, ISBLANK(Employee[TermDate])))
+	measure Actives =
+	VAR LatestPeriod = MAX('Date'[PeriodNumber])
+	RETURN
+	CALCULATE(
+		COUNT(Employee[EmplID]),
+		'Date'[PeriodNumber] = LatestPeriod,
+		ISBLANK(Employee[TermDate])
+	)
 		formatString: #,0
 		lineageTag: 85d7360e-4032-4f77-9e4f-ebb90f83c025
 
@@ -29,7 +46,10 @@ table Employee
 		lineageTag: 847843f6-d136-4485-a733-e5d6591ae5cf
 
 	/// Converts average tenure days into months and rounds to one decimal place.
-	measure 'AVG Tenure Months' = ROUND([AVG Tenure Days]/30, 1)-1
+	measure 'AVG Tenure Months' =
+	VAR AvgDays = [AVG Tenure Days]
+	RETURN
+	ROUND(DIVIDE(AvgDays, 30), 1)
 		formatString: 0
 		lineageTag: 6dba930b-1a70-4cbe-b4e6-1068100e9f78
 
@@ -45,82 +65,146 @@ table Employee
 		lineageTag: 89ce9e6c-af01-4b71-935e-e32bd86f6b37
 
 	/// Returns new hires for the same period last year using SAMEPERIODLASTYEAR.
-	measure 'New Hires SPLY' = CALCULATE([New Hires],SAMEPERIODLASTYEAR('Date'[Date]))
+	measure 'New Hires SPLY' =
+	CALCULATE(
+		[New Hires],
+		SAMEPERIODLASTYEAR('Date'[Date])
+	)
 		formatString: #,0
 		lineageTag: d53f7711-4e53-4bb7-ba5a-8fd82e1404c6
 
 	/// Returns active employees for the same period last year.
-	measure 'Actives SPLY' = CALCULATE([Actives],SAMEPERIODLASTYEAR('Date'[Date]))
+	measure 'Actives SPLY' =
+	CALCULATE(
+		[Actives],
+		SAMEPERIODLASTYEAR('Date'[Date])
+	)
 		formatString: #,0
 		lineageTag: 84bdbb48-7b97-4285-9774-c747379163f6
 
 	/// Returns separations for the same period last year.
-	measure 'Seps SPLY' = CALCULATE([Seps],SAMEPERIODLASTYEAR('Date'[Date]))
+	measure 'Seps SPLY' =
+	CALCULATE(
+		[Seps],
+		SAMEPERIODLASTYEAR('Date'[Date])
+	)
 		formatString: #,0
 		lineageTag: 74a51ca4-495d-49ba-a27c-e74cf32c23db
 
 	/// Counts employees for the latest comparable period in the prior year.
-	measure 'EmpCount SPLY' = CALCULATE(COUNT([EmplID]), FILTER(ALL('Date'[PeriodNumber]), 'Date'[PeriodNumber] = MAX('Date'[PeriodNumber])),SAMEPERIODLASTYEAR('Date'[Date]))
+	measure 'EmpCount SPLY' =
+	VAR LatestPeriod = MAX('Date'[PeriodNumber])
+	RETURN
+	CALCULATE(
+		COUNT(Employee[EmplID]),
+		'Date'[PeriodNumber] = LatestPeriod,
+		SAMEPERIODLASTYEAR('Date'[Date])
+	)
 		formatString: #,0
 		lineageTag: 5d72d359-a2ce-4e62-8c82-605f5d8879fb
 
 	/// Calculates year-over-year variance in separations as current minus prior year.
-	measure 'Seps YoY Var' = [Seps]-[Seps SPLY]
+	measure 'Seps YoY Var' =
+	VAR Curr = [Seps]
+	VAR Prior = [Seps SPLY]
+	RETURN
+	Curr - Prior
 		formatString: #,0
 		lineageTag: 4e89664a-40aa-412e-b07b-40b99f6f552d
 
 	/// Calculates year-over-year variance in active employees as current minus prior year.
-	measure 'Actives YoY Var' = [Actives]-[Actives SPLY]
+	measure 'Actives YoY Var' =
+	VAR Curr = [Actives]
+	VAR Prior = [Actives SPLY]
+	RETURN
+	Curr - Prior
 		formatString: #,0
 		lineageTag: ac589e5a-1a95-4e42-94ee-0ed615fa540e
 
 	/// Calculates year-over-year variance in new hires as current minus prior year.
-	measure 'New Hires YoY Var' = [New Hires]-[New Hires SPLY]
+	measure 'New Hires YoY Var' =
+	VAR Curr = [New Hires]
+	VAR Prior = [New Hires SPLY]
+	RETURN
+	Curr - Prior
 		formatString: #,0
 		lineageTag: fd1f1b05-5d56-4bad-81e1-dd49cc74aa84
 
 	/// Calculates separation percentage change versus the same period last year.
-	measure 'Seps YoY % Change' = DIVIDE([Seps YoY Var], [Seps SPLY])
+	measure 'Seps YoY % Change' =
+	VAR Curr = [Seps]
+	VAR Prior = [Seps SPLY]
+	RETURN
+	DIVIDE(Curr - Prior, Prior)
 		formatString: #,0.0%;-#,0.0%;#,0.0%
 		lineageTag: 3a109bb7-2c23-4391-a6ce-20ce978286c3
 
 	/// Calculates active headcount percentage change versus the same period last year.
-	measure 'Actives YoY % Change' = DIVIDE([Actives YoY Var], [Actives SPLY])
+	measure 'Actives YoY % Change' =
+	VAR Curr = [Actives]
+	VAR Prior = [Actives SPLY]
+	RETURN
+	DIVIDE(Curr - Prior, Prior)
 		formatString: #,0.0%;-#,0.0%;#,0.0%
 		lineageTag: de0d73ca-3cfe-4e93-a63b-1a6643c2ed9a
 
 	/// Calculates new hire percentage change versus the same period last year.
-	measure 'New Hires YoY % Change' = DIVIDE([New Hires YoY Var], [New Hires SPLY])
+	measure 'New Hires YoY % Change' =
+	VAR Curr = [New Hires]
+	VAR Prior = [New Hires SPLY]
+	RETURN
+	DIVIDE(Curr - Prior, Prior)
 		formatString: #,0.0%;-#,0.0%;#,0.0%
 		lineageTag: 72d2e96f-621a-43df-8a76-ca8273685080
 
 	/// Returns bad hire count for the same period last year.
-	measure 'Bad Hires SPLY' = CALCULATE([Sum of BadHires],SAMEPERIODLASTYEAR('Date'[Date]))
+	measure 'Bad Hires SPLY' =
+	CALCULATE(
+		[Sum of BadHires],
+		SAMEPERIODLASTYEAR('Date'[Date])
+	)
 		formatString: #,0
 		lineageTag: 0b1de625-75ec-4294-a714-8f57065c755a
 
 	/// Calculates year-over-year variance in bad hires as current minus prior year.
-	measure 'Bad Hires YoY Var' = [Sum of BadHires]-[Bad Hires SPLY]
+	measure 'Bad Hires YoY Var' =
+	VAR Curr = [Sum of BadHires]
+	VAR Prior = [Bad Hires SPLY]
+	RETURN
+	Curr - Prior
 		formatString: #,0
 		lineageTag: e9706dd4-704e-4702-b54f-a998cf479e5f
 
 	/// Calculates bad hire percentage change versus the same period last year.
-	measure 'Bad Hires YoY % Change' = DIVIDE([Bad Hires YoY Var], [Bad Hires SPLY])
+	measure 'Bad Hires YoY % Change' =
+	VAR Curr = [Sum of BadHires]
+	VAR Prior = [Bad Hires SPLY]
+	RETURN
+	DIVIDE(Curr - Prior, Prior)
 		formatString: #,0.0%;-#,0.0%;#,0.0%
 		lineageTag: dfb9718f-7919-4d21-b555-602025a508e0
 
 	/// Calculates turnover rate as separations divided by active employees.
-	measure 'TO %' = DIVIDE([Seps], [Actives])
+	measure 'TO %' =
+	DIVIDE([Seps], [Actives])
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: c528bf60-987a-410f-a8ca-3ce25b243dab
 
 	/// Calculates normalized turnover rate by removing Gender and Ethnicity filters.
-	measure 'TO % Norm' = CALCULATE([TO %], all(Gender[Gender]), ALL(Ethnicity[Ethnicity]))
+	measure 'TO % Norm' =
+	CALCULATE(
+		[TO %],
+		REMOVEFILTERS(Gender, Ethnicity)
+	)
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: f21102a9-7e2f-41a3-9468-d3348065d7ee
 
 	/// Shows variance between selected turnover rate and normalized turnover rate.
-	measure 'TO % Var' = [TO %]-[TO % Norm]
+	measure 'TO % Var' =
+	VAR Curr = [TO %]
+	VAR Norm = [TO % Norm]
+	RETURN
+	Curr - Norm
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 69bf92bc-0fd7-4503-bee1-c7d7391b0298
 

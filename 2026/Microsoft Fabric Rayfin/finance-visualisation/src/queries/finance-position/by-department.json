@@ -1,0 +1,23 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Actual and budget expenditure by department.",
+    "width": "container",
+    "height": "container",
+    "transform": [
+        { "fold": ["ActualAmount", "BudgetAmount"], "as": ["Series", "Amount"] },
+        { "calculate": "datum.Series === 'ActualAmount' ? 'Actual' : 'Budget'", "as": "SeriesLabel" }
+    ],
+    "mark": { "type": "bar", "cornerRadiusEnd": 2 },
+    "encoding": {
+        "y": { "field": "DepartmentName", "type": "nominal", "title": null, "sort": "-x", "axis": { "labelLimit": 150 } },
+        "yOffset": { "field": "SeriesLabel", "type": "nominal" },
+        "x": { "field": "Amount", "type": "quantitative", "title": "Amount (AUD)", "axis": { "format": "$,.0s" } },
+        "color": { "field": "SeriesLabel", "type": "nominal", "title": null, "scale": { "domain": ["Actual", "Budget"] } },
+        "tooltip": [
+            { "field": "BusinessUnit", "type": "nominal", "title": "Business Unit" },
+            { "field": "DepartmentName", "type": "nominal", "title": "Department" },
+            { "field": "SeriesLabel", "type": "nominal", "title": "Series" },
+            { "field": "Amount", "type": "quantitative", "title": "Amount", "format": "$,.2f" }
+        ]
+    }
+}

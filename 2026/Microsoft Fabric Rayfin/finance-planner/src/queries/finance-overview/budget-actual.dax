@@ -1,0 +1,8 @@
+EVALUATE
+ROW(
+    "Actual Amount",
+    CALCULATE(
+        [Actual Amount]
+        /*__FILTERS__*/
+    )
+)

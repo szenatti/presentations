@@ -1,0 +1,6 @@
+EVALUATE
+SELECTCOLUMNS(
+    FILTER(VALUES(dimmonth[CalendarYear]), NOT ISBLANK(dimmonth[CalendarYear])),
+    "CalendarYear", dimmonth[CalendarYear]
+)
+ORDER BY [CalendarYear]

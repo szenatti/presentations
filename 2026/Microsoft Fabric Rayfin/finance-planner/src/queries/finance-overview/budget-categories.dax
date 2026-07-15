@@ -1,0 +1,7 @@
+EVALUATE
+SELECTCOLUMNS(
+    dimcategory,
+    "CategoryKey", dimcategory[CategoryKey],
+    "CategoryName", dimcategory[CategoryName]
+)
+ORDER BY [CategoryName]

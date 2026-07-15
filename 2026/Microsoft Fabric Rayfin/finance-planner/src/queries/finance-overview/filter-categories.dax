@@ -1,0 +1,6 @@
+EVALUATE
+SELECTCOLUMNS(
+    FILTER(VALUES(dimcategory[CategoryName]), NOT ISBLANK(dimcategory[CategoryName])),
+    "CategoryName", dimcategory[CategoryName]
+)
+ORDER BY [CategoryName]

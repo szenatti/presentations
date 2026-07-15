@@ -1,0 +1,8 @@
+EVALUATE
+SUMMARIZECOLUMNS (
+    'dimcategory'[CategoryGroup],
+    /*__FILTERS__*/
+    "Actual Amount", [Actual Amount],
+    "Budget Amount", [Budget Amount]
+)
+ORDER BY [Actual Amount] DESC

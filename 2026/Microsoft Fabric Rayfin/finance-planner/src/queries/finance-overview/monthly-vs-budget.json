@@ -1,0 +1,17 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Monthly actual vs budget expenditure.",
+    "width": "container",
+    "height": "container",
+    "mark": "line",
+    "encoding": {
+        "x": { "field": "MonthStart", "type": "temporal", "title": "Month" },
+        "y": { "field": "Amount", "type": "quantitative", "title": "Amount" },
+        "color": {
+            "field": "Series",
+            "type": "nominal",
+            "title": null,
+            "scale": { "domain": ["Actual", "Budget"] }
+        }
+    }
+}

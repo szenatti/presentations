@@ -1,0 +1,8 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    dimdepartment[DepartmentKey],
+    dimdepartment[DepartmentName],
+    /*__FILTERS__*/
+    "Actual Amount", [Actual Amount]
+)
+ORDER BY [Actual Amount] DESC

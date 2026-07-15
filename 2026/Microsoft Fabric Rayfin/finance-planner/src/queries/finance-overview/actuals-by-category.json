@@ -1,0 +1,17 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Actual expenditure by cost category.",
+    "width": "container",
+    "height": "container",
+    "encoding": {
+        "y": { "field": "CategoryName", "type": "nominal", "sort": "-x", "title": null },
+        "x": { "field": "ActualAmount", "type": "quantitative", "title": "Actual Amount" }
+    },
+    "layer": [
+        { "mark": "bar" },
+        {
+            "mark": { "type": "text", "style": "labelHorizontal" },
+            "encoding": { "text": { "field": "ActualAmount", "type": "quantitative" } }
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    dimmonth[MonthStart],
+    dimmonth[MonthName],
+    dimmonth[CalendarYear],
+    dimmonth[MonthNumber],
+    /*__FILTERS__*/
+    "Actual Amount", [Actual Amount]
+)
+ORDER BY dimmonth[MonthStart]

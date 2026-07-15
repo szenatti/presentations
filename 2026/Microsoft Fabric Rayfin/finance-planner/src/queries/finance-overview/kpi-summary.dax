@@ -1,0 +1,11 @@
+EVALUATE
+CALCULATETABLE(
+    ROW(
+        "Actual Amount", [Actual Amount],
+        "Transaction Count", [Transaction Count],
+        "Average Transaction", [Average Transaction],
+        "Previous Month Actual", [Previous Month Actual],
+        "MoM Change %", [Month-over-Month Change %]
+    )
+    /*__FILTERS__*/
+)

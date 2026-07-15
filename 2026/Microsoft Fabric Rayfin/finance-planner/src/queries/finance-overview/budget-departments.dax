@@ -1,0 +1,7 @@
+EVALUATE
+SELECTCOLUMNS(
+    dimdepartment,
+    "DepartmentKey", dimdepartment[DepartmentKey],
+    "DepartmentName", dimdepartment[DepartmentName]
+)
+ORDER BY [DepartmentName]

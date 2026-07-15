@@ -1,0 +1,18 @@
+EVALUATE
+SUMMARIZECOLUMNS (
+    'dimmonth'[MonthStart],
+    'dimdepartment'[BusinessUnit],
+    'dimdepartment'[DepartmentName],
+    'dimcategory'[CategoryGroup],
+    'dimcategory'[CategoryName],
+    /*__FILTERS__*/
+    "Actual Amount", [Actual Amount],
+    "Budget Amount", [Budget Amount],
+    "Variance", [Variance],
+    "Variance %", [Variance %],
+    "Budget Consumed %", [Budget Consumed %]
+)
+ORDER BY
+    'dimmonth'[MonthStart],
+    'dimdepartment'[DepartmentName],
+    'dimcategory'[CategoryName]

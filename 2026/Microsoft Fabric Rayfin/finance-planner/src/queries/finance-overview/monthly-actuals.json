@@ -1,0 +1,11 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Monthly actual expenditure trend.",
+    "width": "container",
+    "height": "container",
+    "mark": "line",
+    "encoding": {
+        "x": { "field": "MonthStart", "type": "temporal", "title": "Month" },
+        "y": { "field": "ActualAmount", "type": "quantitative", "title": "Actual Amount" }
+    }
+}

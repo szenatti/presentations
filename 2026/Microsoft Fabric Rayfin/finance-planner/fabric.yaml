@@ -1,0 +1,7 @@
+activeProfile: default
+profiles:
+  default:
+    semanticModels:
+      financeModel:
+        workspaceId: 9df057b3-a3d0-4072-a7a2-b2bc843e311f
+        itemId: 5c1390b7-4f80-4568-bdbc-6821728c3e7a

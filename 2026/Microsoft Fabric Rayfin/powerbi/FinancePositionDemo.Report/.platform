@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Finance Position Demo",
+    "description": "Actual-only finance dashboard bound to Finance Analytics Model for demonstration purposes."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9a7c6b3c-638a-403a-8859-e26e704e13a7"
+  }
+}

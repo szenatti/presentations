@@ -1,0 +1,21 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Actual and budget expenditure by month.",
+    "width": "container",
+    "height": "container",
+    "transform": [
+        { "fold": ["ActualAmount", "BudgetAmount"], "as": ["Series", "Amount"] },
+        { "calculate": "datum.Series === 'ActualAmount' ? 'Actual' : 'Budget'", "as": "SeriesLabel" }
+    ],
+    "mark": { "type": "line", "point": { "filled": true }, "strokeWidth": 2.5 },
+    "encoding": {
+        "x": { "field": "MonthLabel", "type": "ordinal", "title": null, "sort": { "field": "MonthSort", "order": "ascending" }, "axis": { "labelAngle": 0, "labelOverlap": "parity" } },
+        "y": { "field": "Amount", "type": "quantitative", "title": "Amount (AUD)", "axis": { "format": "$,.0f" } },
+        "color": { "field": "SeriesLabel", "type": "nominal", "title": null, "scale": { "domain": ["Actual", "Budget"] } },
+        "tooltip": [
+            { "field": "MonthLabel", "type": "ordinal", "title": "Month" },
+            { "field": "SeriesLabel", "type": "nominal", "title": "Series" },
+            { "field": "Amount", "type": "quantitative", "title": "Amount", "format": "$,.2f" }
+        ]
+    }
+}

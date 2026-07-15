@@ -1,0 +1,21 @@
+﻿CategoryKey,CategoryName,ExpenseType,CategoryGroup,GLAccount
+C001,Software & SaaS,Operating Expense,IT Services,6100
+C002,Cloud Services,Operating Expense,IT Services,6110
+C003,Hardware,Capital Expense,Technology Assets,1500
+C004,Contractors,Operating Expense,Professional Services,6200
+C005,Consulting,Operating Expense,Professional Services,6210
+C006,Travel,Operating Expense,Employee Costs,6300
+C007,Training,Operating Expense,Employee Costs,6310
+C008,Recruitment,Operating Expense,Employee Costs,6320
+C009,Advertising,Operating Expense,Marketing,6400
+C010,Events,Operating Expense,Marketing,6410
+C011,Office Supplies,Operating Expense,Administration,6500
+C012,Telecommunications,Operating Expense,Administration,6510
+C013,Rent,Operating Expense,Facilities,6600
+C014,Utilities,Operating Expense,Facilities,6610
+C015,Repairs & Maintenance,Operating Expense,Facilities,6620
+C016,Insurance,Operating Expense,Corporate,6700
+C017,Legal & Compliance,Operating Expense,Corporate,6710
+C018,Freight & Logistics,Operating Expense,Operations,6800
+C019,Vehicle Expenses,Operating Expense,Operations,6810
+C020,Customer Support Tools,Operating Expense,Customer Service,6900

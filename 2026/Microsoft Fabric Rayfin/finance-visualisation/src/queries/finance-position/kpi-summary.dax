@@ -1,0 +1,11 @@
+EVALUATE
+CALCULATETABLE (
+    ROW (
+        "Actual Amount", [Actual Amount],
+        "Budget Amount", [Budget Amount],
+        "Variance", [Variance],
+        "Variance %", [Variance %],
+        "Budget Consumed %", [Budget Consumed %]
+    )
+    /*__FILTERS__*/
+)

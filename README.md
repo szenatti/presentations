@@ -6,6 +6,10 @@ Welcome to the Presentations repository! This collection contains materials and 
 
 ### 2026
 
+- **[Microsoft Fabric + Rayfin — Finance Planner](2026/Microsoft%20Fabric%20Rayfin/)**
+
+  Build an end-to-end finance analytics and planning solution with a Fabric Lakehouse, Direct Lake semantic model, Power BI reports, and Rayfin data apps. Includes synthetic finance data, a budget-entry application, a read-only visualization app, a reproducible walkthrough, and the presentation slide deck.
+
 - **[Introduction to Power BI MCP](2026/Introduction%20to%20Power%20BI%20MCP/)**
   
   Exploring the two Power BI MCP server experiences — **Ask vs Build**. Presented at Perth Microsoft Data and Analytics User Group, covering the Remote Power BI MCP Server (cloud-hosted query engine) and Power BI Modeling MCP Server (local model engineering). Features live VS Code + GitHub Copilot demonstrations, practical prompt examples for analytics and model governance, setup prerequisites, and hands-on walkthroughs. Includes comprehensive sample prompts for schema discovery, time-series analysis, DAX generation, semantic documentation, naming conventions, measure engineering, translations, and security automation.

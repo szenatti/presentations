@@ -1,0 +1,6 @@
+EVALUATE
+FILTER (
+    VALUES ( 'dimmonth'[CalendarYear] ),
+    NOT ISBLANK ( 'dimmonth'[CalendarYear] )
+)
+ORDER BY 'dimmonth'[CalendarYear] DESC

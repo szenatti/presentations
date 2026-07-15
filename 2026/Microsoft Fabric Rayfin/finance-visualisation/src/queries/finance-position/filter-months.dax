@@ -1,0 +1,7 @@
+EVALUATE
+SUMMARIZE (
+    'dimmonth',
+    'dimmonth'[MonthNumber],
+    'dimmonth'[MonthName]
+)
+ORDER BY 'dimmonth'[MonthNumber]

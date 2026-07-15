@@ -1,0 +1,15 @@
+EVALUATE
+SUMMARIZECOLUMNS (
+    'dimmonth'[MonthStart],
+    FILTER (
+        VALUES ( 'dimmonth'[MonthStart] ),
+        NOT ISBLANK ( 'dimmonth'[MonthStart] )
+    ),
+    /*__FILTERS__*/
+    "Month Label", FORMAT ( SELECTEDVALUE ( 'dimmonth'[MonthStart] ), "MMM yyyy" ),
+    "Month Sort", YEAR ( SELECTEDVALUE ( 'dimmonth'[MonthStart] ) ) * 100
+        + MONTH ( SELECTEDVALUE ( 'dimmonth'[MonthStart] ) ),
+    "Actual Amount", [Actual Amount],
+    "Budget Amount", [Budget Amount]
+)
+ORDER BY 'dimmonth'[MonthStart]

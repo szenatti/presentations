@@ -1,0 +1,6 @@
+EVALUATE
+SELECTCOLUMNS(
+    FILTER(VALUES(dimdepartment[DepartmentName]), NOT ISBLANK(dimdepartment[DepartmentName])),
+    "DepartmentName", dimdepartment[DepartmentName]
+)
+ORDER BY [DepartmentName]

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "card_variancepct",
+  "position": {
+    "x": 861,
+    "y": 88,
+    "z": 8,
+    "width": 193,
+    "height": 104,
+    "tabOrder": 8
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finance Measures"
+                    }
+                  },
+                  "Property": "Variance %"
+                }
+              },
+              "queryRef": "Finance Measures.Variance %",
+              "nativeQueryRef": "Variance %"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

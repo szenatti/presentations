@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "card_consumed",
+  "position": {
+    "x": 1068,
+    "y": 88,
+    "z": 9,
+    "width": 196,
+    "height": 104,
+    "tabOrder": 9
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finance Measures"
+                    }
+                  },
+                  "Property": "Budget Consumed %"
+                }
+              },
+              "queryRef": "Finance Measures.Budget Consumed %",
+              "nativeQueryRef": "Budget Consumed %"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

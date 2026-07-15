@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "card_budget",
+  "position": {
+    "x": 447,
+    "y": 88,
+    "z": 6,
+    "width": 193,
+    "height": 104,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finance Measures"
+                    }
+                  },
+                  "Property": "Budget Amount"
+                }
+              },
+              "queryRef": "Finance Measures.Budget Amount",
+              "nativeQueryRef": "Budget Amount"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

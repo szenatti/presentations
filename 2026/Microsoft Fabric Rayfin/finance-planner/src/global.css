@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Bridged tokens — kept in `@theme static` so the CSS vars are always
+   emitted, not tree-shaken when no Tailwind utility consumes them.
+   Required because <VegaVisual> and <DataGrid> read these at runtime via
+   `useCssTheme()` and project them into a JS theme object (Vega's SVG output
+   cannot resolve `var()` references). */
+@theme static {
+  --color-brand:            #0d6d5e;  /* bar/area fills, button-like brand surfaces */
+  --color-brand-foreground: #0d6d5e;  /* line/point marks, branded text & emphasis */
+  --color-hover:            #eef1ec;  /* row/cell hover surface in DataGrid + visuals */
+}
+
+@theme {
+  /* Color tokens — light theme (finance "ledger": warm paper + deep emerald)
+     Usage: bg-*, text-*, border-* (e.g. bg-primary text-primary-foreground)
+     Each token has a -foreground pair for text on that surface. */
+  --color-background: #f6f5f0;                                       /* page background (warm paper) */
+  --color-foreground: #1b2a2f;                                       /* default text (deep ink) */
+
+  --color-card: #ffffff;                                             /* card surfaces */
+  --color-card-foreground: #1b2a2f;
+
+  --color-popover: #ffffff;                                          /* popover/dropdown surfaces */
+  --color-popover-foreground: #1b2a2f;
+
+  --color-primary: #0d6d5e;                                          /* primary actions & buttons (emerald) */
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #eceae2;                                        /* secondary actions */
+  --color-secondary-foreground: #1b2a2f;
+
+  --color-muted: #edece6;                                            /* subtle backgrounds */
+  --color-muted-foreground: #5c6b6a;                                 /* subdued text */
+
+  --color-accent: #e7efe9;                                           /* accent highlights (pale emerald) */
+  --color-accent-foreground: #0d6d5e;
+
+  --color-destructive: #b0332b;                                      /* errors & destructive actions */
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #ded9cd;                                           /* default border (warm) */
+  --color-input: #ded9cd;                                            /* input field borders */
+  --color-ring: #0d6d5e;                                             /* focus rings */
+
+  --color-delta-up: #0d7a54;                                         /* MoM increase (text/icon) */
+  --color-delta-down: #b5561f;                                       /* MoM decrease (text/icon) */
+
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 12px;
+  --radius-3xl: 16px;
+  --radius-4xl: 24px;
+  --radius-5xl: 32px;
+  --radius-6xl: 40px;
+  --radius-full: 9999px;
+  --radius: 6px;
+
+    /* Spacing — 4px baseline grid 
+      Usage: p-*, m-*, gap-* (e.g. p-l gap-m) */
+  --spacing-none: 0;
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-s-nudge: 6px;
+  --spacing-s: 8px;
+  --spacing-m-nudge: 10px;
+  --spacing-m: 12px;
+  --spacing-l: 16px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 24px;
+  --spacing-xxxl: 32px;
+
+  /* Font Sizes — 100-based scale 
+     Usage: text-* (e.g. text-300, text-hero-900) */
+  --text-100: 10px;
+  --text-200: 12px;
+  --text-300: 14px;
+  --text-400: 16px;
+  --text-500: 20px;
+  --text-600: 24px;
+  --text-hero-700: 28px;
+  --text-hero-800: 32px;
+  --text-hero-900: 40px;
+  --text-hero-1000: 68px;
+
+  /* Line Heights — paired with font sizes
+     Usage: leading-* (e.g. leading-300) */
+  --leading-100: 14px;
+  --leading-200: 16px;
+  --leading-300: 20px;
+  --leading-400: 22px;
+  --leading-500: 28px;
+  --leading-600: 32px;
+  --leading-hero-700: 36px;
+  --leading-hero-800: 40px;
+  --leading-hero-900: 52px;
+  --leading-hero-1000: 92px;
+
+  /* Font Weights
+     Usage: font-* (e.g. font-semibold) */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Font Families
+     Usage: font-* (e.g. font-heading, font-base) */
+  --font-heading: 'Fraunces', 'Iowan Old Style', Georgia,           /* headings, titles, display text */
+    'Times New Roman', serif;
+  --font-base: 'IBM Plex Sans', 'Segoe UI',                         /* body text, labels, UI controls */
+    -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-monospace: 'IBM Plex Mono', Consolas, 'Courier New',        /* code, pre-formatted text */
+    monospace;
+  --font-numeric: 'IBM Plex Mono', 'Segoe UI',                      /* KPI values, numeric displays */
+    ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Icon Sizes — 100-based scale
+     Usage: icon-size-* custom utility (e.g. icon-size-200) */
+  --icon-size-100: 12px;
+  --icon-size-200: 16px;
+  --icon-size-300: 20px;
+  --icon-size-400: 24px;
+  --icon-size-500: 28px;
+  --icon-size-600: 32px;
+  --icon-size-700: 48px;
+}
+
+@utility icon-size-* {
+  width: --value(--icon-size-*);
+  height: --value(--icon-size-*);
+}
+
+@layer base {
+  .dark {
+    /* Color tokens — dark theme (deep ink + emerald) */
+    --color-background: #0e1a1c;
+    --color-foreground: #eef2ef;
+
+    --color-card: #142226;
+    --color-card-foreground: #eef2ef;
+
+    --color-popover: #142226;
+    --color-popover-foreground: #eef2ef;
+
+    --color-primary: #17a389;
+    --color-primary-foreground: #04231d;
+
+    --color-secondary: #1a2a2e;
+    --color-secondary-foreground: #eef2ef;
+
+    --color-muted: #172629;
+    --color-muted-foreground: #9fb0ac;
+
+    --color-accent: #1e3230;
+    --color-accent-foreground: #eef2ef;
+
+    --color-destructive: #e0574a;
+    --color-destructive-foreground: #ffffff;
+
+    --color-border: #2a3d3f;
+    --color-input: #2a3d3f;
+    --color-ring: #3fbfa2;
+
+    --color-brand:            #17a389;
+    --color-brand-foreground: #3fbfa2;
+    --color-hover:            #1e3230;
+
+    --color-delta-up: #34c48f;
+    --color-delta-down: #e08a4f;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-base);
+  }
+
+  /* Native form controls don't inherit the page font by default. */
+  select,
+  input,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
